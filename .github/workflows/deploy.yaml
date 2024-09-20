@@ -1,0 +1,18 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ 'main' ]
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: deploy
+        shell: bash
+        run: |
+          set -e
+          echo "USER: ${{vars.USER}}"
+          echo "HOST: ${{vars.HOST}}"
+          ssh -o "StrictHostKeyChecking no" "${{vars.USER}}@${{vars.HOST}}" "cd apps && ./deploy_AcquireWidgetDemo.sh"
