@@ -1,5 +1,5 @@
 import "./styles.css";
-import { Box, Button, CircularProgress } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import SuccessIcon from "../../assets/success.svg";
 import { useEffect, useState } from "react";
 
@@ -35,11 +35,9 @@ const PaymentStatus: React.FC<PaymentStatusProps> = ({ onClose }) => {
           </>
         )}
       </div>
-      <Box display="flex" width="100%">
-        <Button variant="outlined" color="secondary" onClick={onClose} fullWidth>
-          Back to merchant
-        </Button>
-      </Box>
+      <Button variant="outlined" color="secondary" onClick={onClose} fullWidth>
+        Back to merchant
+      </Button>
     </div>
   );
 };

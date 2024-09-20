@@ -7,7 +7,7 @@ import AmexIcon from "../../assets/amex.svg";
 import GoogleIcon from "../../assets/google.svg";
 import AppleIcon from "../../assets/apple.svg";
 import BitcoinIcon from "../../assets/bitcoin.svg";
-import EtheriumIcon from "../../assets/etherium.svg";
+import EthereumIcon from "../../assets/ethereum.svg";
 import "./styles.css";
 
 interface SelectPaymentProps {
@@ -31,10 +31,10 @@ const SelectPayment: React.FC<SelectPaymentProps> = ({ onClick, onClose }) => {
           </div>
           <div>Credit or debit card</div>
         </div>
-        <div className="card">
+        <div className="card" onClick={onClick(PaymentMethods.Crypto)}>
           <div className="logo-container">
             <BitcoinIcon />
-            <EtheriumIcon />
+            <EthereumIcon />
           </div>
           <div>Cryptocurrencies</div>
         </div>

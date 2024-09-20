@@ -4,3 +4,12 @@
   padding: 2rem;
   text-align: center;
 }
+
+.pointer {
+  cursor: pointer;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}

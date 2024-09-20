@@ -1,0 +1,50 @@
+.secure-container {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px;
+  gap: 32px;
+}
+
+.form-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.title {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 240px;
+  width: 406px;
+  padding-right: 40px;
+}
+
+.form-item-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  span,
+  div {
+    width: 200px;
+  }
+}
+
+.item-title {
+  text-align: right;
+}
+
+.cancel-button {
+  text-decoration: underline;
+  cursor: pointer;
+}

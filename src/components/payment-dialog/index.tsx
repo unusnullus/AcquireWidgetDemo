@@ -7,6 +7,9 @@ import { PAYMENT_METHOD_STEPS } from "../../constants";
 import CardDetails from "../card-details";
 import OrderSummary from "../order-summary";
 import PaymentStatus from "../payment-status";
+import SecureForm from "../secure-form";
+import ConnectWallet from "../connect-wallet";
+import CryptoPay from "../crypto-pay";
 
 interface PaymentDialogProps {
   open: boolean;
@@ -15,7 +18,7 @@ interface PaymentDialogProps {
 }
 
 export const PaymentDialog: React.FC<PaymentDialogProps> = ({ open, onClose }) => {
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(2);
   const [method, setMethod] = useState<PaymentMethods | null>(null);
 
   const handleNextStep = () => {
@@ -26,9 +29,14 @@ export const PaymentDialog: React.FC<PaymentDialogProps> = ({ open, onClose }) =
     onClose();
   };
 
+  const handleBackToFirstStep = () => {
+    setActiveStep(2);
+    setMethod(null);
+  };
+
   useEffect(() => {
     if (open) {
-      setActiveStep(1);
+      setActiveStep(2);
       setMethod(null);
     }
   }, [open]);
@@ -36,6 +44,7 @@ export const PaymentDialog: React.FC<PaymentDialogProps> = ({ open, onClose }) =
   const handleBackStep = () => {
     if (activeStep === 2) {
       setMethod(null);
+      return;
     }
 
     setActiveStep((prev) => prev - 1);
@@ -43,28 +52,42 @@ export const PaymentDialog: React.FC<PaymentDialogProps> = ({ open, onClose }) =
 
   const handleSelectPayment = (value: PaymentMethods) => () => {
     setMethod(value);
-    handleNextStep();
   };
 
-  const renderSteps = (step: number) => {
+  const renderCryptoSteps = (step: number) => {
     switch (step) {
-      case 1:
-        return <SelectPayment onClick={handleSelectPayment} onClose={handleCloseDialog} />;
+      case 2:
+        return <ConnectWallet onClose={handleBackStep} onNext={handleNextStep} />;
+      case 3:
+        return <OrderSummary onClose={handleBackStep} onNext={handleNextStep} />;
+      case 4:
+        return <CryptoPay onClose={handleCloseDialog} onNext={handleNextStep} onBack={handleBackToFirstStep} />;
+      case 5:
+        return <PaymentStatus onClose={handleCloseDialog} />;
+    }
+  };
+
+  const renderCardSteps = (step: number) => {
+    switch (step) {
       case 2:
         return <CardDetails onClose={handleBackStep} onNext={handleNextStep} />;
       case 3:
         return <OrderSummary onClose={handleBackStep} onNext={handleNextStep} />;
       case 4:
+        return <SecureForm onNext={handleNextStep} onClose={handleBackStep} />;
+      case 5:
         return <PaymentStatus onClose={handleCloseDialog} />;
     }
   };
 
   return (
-    <Dialog onClose={handleCloseDialog} open={open} maxWidth={false}>
-      {method && activeStep < PAYMENT_METHOD_STEPS[method].length && (
+    <Dialog open={open} maxWidth={false}>
+      {method && activeStep <= PAYMENT_METHOD_STEPS[method].length && (
         <Stepper steps={PAYMENT_METHOD_STEPS[method]} activeStep={activeStep} />
       )}
-      {renderSteps(activeStep)}
+      {!method && <SelectPayment onClick={handleSelectPayment} onClose={handleCloseDialog} />}
+      {method === PaymentMethods.Card && renderCardSteps(activeStep)}
+      {method === PaymentMethods.Crypto && renderCryptoSteps(activeStep)}
     </Dialog>
   );
 };
