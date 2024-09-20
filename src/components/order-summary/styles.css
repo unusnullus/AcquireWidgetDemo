@@ -1,0 +1,53 @@
+.select-payment-container {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  gap: 32px;
+}
+
+.step-title {
+  font-size: 22px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.total-container {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+.items-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--mui-palette-info-main);
+
+  span.price {
+    font-weight: 500;
+  }
+}
+
+.terms-of-use-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  line-height: normal;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--mui-palette-info-main);
+
+  p span {
+    color: var(--mui-palette-primary-main);
+  }
+}
+
+.error {
+  color: var(--mui-palette-error-main) !important;
+}

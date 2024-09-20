@@ -1,0 +1,46 @@
+.select-payment-container {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  gap: 32px;
+}
+
+.step-title {
+  font-size: 22px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.input-container {
+  border-radius: 8px;
+  padding: 16px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--mui-palette-secondary-light);
+  border: 1px solid var(--mui-palette-secondary-light);
+  transition: 0.2s all;
+}
+
+.input-error {
+  background-color: var(--mui-palette-error-light);
+  border: 1px solid var(--mui-palette-error-main);
+}
+
+.input {
+  font-size: 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: none;
+  font-family: Inter;
+}
+
+.caption {
+  font-size: 14px;
+  line-height: normal;
+  color: var(--mui-palette-secondary-main);
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--mui-palette-info-main);
+}

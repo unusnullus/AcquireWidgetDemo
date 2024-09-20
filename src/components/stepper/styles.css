@@ -1,0 +1,33 @@
+.stepper-container {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  padding: 32px 32px 20px;
+
+  border-bottom: 1px solid var(--mui-palette-info-main);
+  color: var(--mui-palette-info-main);
+}
+
+.step-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--mui-palette-info-main);
+  min-width: 36px;
+  min-height: 36px;
+  border-radius: 50%;
+}
+
+.step-divider {
+  border-bottom: 1px solid var(--mui-palette-info-main);
+  width: 100%;
+  border-radius: 50%;
+}
+
+.active {
+  border-color: var(--mui-palette-primary-main);
+  color: var(--mui-palette-primary-main);
+}
